@@ -44,6 +44,11 @@
  * 
  * @return {array}: array of elements from array, as specified by number 
  * 
+ * Edge Cases:
+ *  1. If number is larger than the given array, first will return the entire 
+ *     array.
+ *  2. If number is negative, first will return an empty array.
+ * 
  */
  
  function first(array, number) {
@@ -73,6 +78,11 @@
  * 
  * @return {array}: an array containing the specified number of elements from
  * the array input
+ * 
+ *  Edge Cases:
+ *  1. If number is larger than the given array, last will return the entire 
+ *     array.
+ *  2. If number is negative, last will return an empty array.
  * 
  */
  
@@ -179,8 +189,9 @@ module.exports.each = each;
  
  
 /**
- * filter: calls a function on every element of an array and creates a new 
- * array containing elements that the function call returned true for
+ * filter: calls a function on an array and creates a new array containing 
+ * elements that the function call returned true for. The function can be called
+ * on every element, index, and on the entire array. 
  * 
  * @param {array} array: array that will have a function executed on each of its
  * parameters
@@ -205,8 +216,9 @@ module.exports.each = each;
  module.exports.filter = filter;
  
 /**
- * reject: calls a function on every element of an array and creates a new 
- * array containing elements that the function call returned false for
+ * reject: calls a function on an array and creates a new array containing 
+ * elements that the function call returned false for. The function can be 
+ * called on every element, index, and on the entire array. 
  * 
  * @param {array} array: array that will have a function executed on each of its
  * parameters
@@ -300,7 +312,7 @@ module.exports.each = each;
  * @param {array} array: each element of this array will have the value of a 
  * speficied property placed in a new array
  * 
- * @param {value} prop: name of property who's value will be pulled from each
+ * @param {string} prop: name of property who's value will be pulled from each
  * element of array input
  * 
  * @return {array}: new array that contains each property value found at each
@@ -309,7 +321,7 @@ module.exports.each = each;
  */
 
  function pluck(array, prop) {
-    let newArray = array.map(function(obj) {
+    let newArray = map(array, function(obj) {
         for(var key in obj) {
             return obj[prop];
            }
@@ -330,6 +342,12 @@ module.exports.each = each;
  * 
  * @return {boolean}: returns true if every function call returned true or false
  * if any function call returned false
+ * 
+ * Edge cases:
+ *  1.  If no function is passed, every will test if every element of collection
+ *      is truthy, and return true if so and false if any of them evaluate to
+ *      falsey
+ *  2.  If func doesn't evaluate to a boolean, every will return true.
  * 
  */
 
@@ -369,6 +387,12 @@ module.exports.each = each;
  * @return {boolean}: returns true if any function call returned true or false
  * if every function call returned false
  * 
+ *  * Edge cases:
+ *  1.  If no function is passed, some will test if any element of collection
+ *      is truthy, and return true if so and false if all of them evaluate to
+ *      falsey
+ *  2.  If func doesn't evaluate to a boolean, some will return false.
+ * 
  */
 
  function some(collection, func) {
@@ -403,8 +427,8 @@ module.exports.each = each;
  * 
  * @param {function} func: function to be executed sequentially upon array input
  * 
- * @param {number} seed: number to feed into function to begin sequential 
- * execution
+ * @param {value} seed: value to feed into function to begin sequential 
+ * execution. can be a number, string, array, or object.
  * 
  * @return {value}: returns the end result of executing func on an element of 
  * array and subsequently passing that value into the next function call

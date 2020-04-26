@@ -1,6 +1,6 @@
 {
   "name": "lodown-mconner89",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "my first npm package lodown library",
   "main": "index.js",
   "directories": {
@@ -18,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/mconner89/lodown/issues"
   },
-  "homepage": "https://github.com/mconner89/lodown#readme"
+  "homepage": "https://github.com/mconner89/lodown#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "i": "^0.3.6",
+    "istanbul": "^0.4.5",
+    "mocha": "^7.1.1",
+    "sinon": "^9.0.2"
+  }
 }
